@@ -1,8 +1,8 @@
 import React from "react";
-import { movies } from "../utils/constants";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 // import { get } from "mongoose";
 import { getTopMoviesByVotes } from "../apis";
+
 
 const Recommended = () => {
 
@@ -36,13 +36,13 @@ const Recommended = () => {
 
         {/* Movies Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {movies.map((movie, i) => (
+          {recMovies?.data?.movies?.map((movie, i) => (
             <div key={i} className="rounded overflow-hidden cursor-pointer">
               
               {/* Image */}
               <div className="relative">
                 <img
-                  src={movie.img}
+                  src={movie.posterUrl}
                   alt={movie.title}
                   className="w-full h-75 object-cover rounded"
                 />
@@ -58,7 +58,7 @@ const Recommended = () => {
               <div className="px-2 py-1">
                 <h3 className="font-semibold text-lg">{movie.title}</h3>
                 <p className="text-md text-gray-500">
-                  {movie.genre.join( "|")}
+                  {movie.genre.join(" | ")}
                 </p>
               </div>
 
